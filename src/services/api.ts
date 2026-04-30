@@ -80,7 +80,11 @@ export const api = {
 
   async createShipment(data: ShipmentCreate): Promise<Shipment> {
     if (MOCK_MODE) {
-      const newShip: Shipment = { ...data, id: `MOCK-${Math.floor(Math.random()*1000)}` };
+      const newShip: Shipment = { 
+        ...data, 
+        id: `MOCK-${Math.floor(Math.random()*1000)}`,
+        status: data.status || "pending"
+      };
       MOCK_SHIPMENTS.push(newShip);
       return newShip;
     }
